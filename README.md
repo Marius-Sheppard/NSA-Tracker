@@ -1,3 +1,3 @@
-# URL Tracker
+# URL Location Tracker
 Tracking Tool based on open-source resources
-Improved accuracy and better functionality
+[NEW] Improved accuracy and better functionality
