@@ -21,6 +21,7 @@ Version = '0.0.0'
 WebPage = 'NULL'
 Info    = ''
 Results = ''
+WAN     = ''
 Rows    = []
 
 with open('./Logs/Version.txt', 'r') as LocalVersion:
@@ -68,6 +69,8 @@ def CheckVersion():
 
 
 def TunnelSelector():
+  global WAN
+
   if(Tunnel_Mode == None):
     print(G + '[+] ' + C + 'Invalid Tunnel Mode' + W + '\n')
   elif(Tunnel_Mode == 'manual' or Tunnel_Mode == 'Manual'):
@@ -87,7 +90,7 @@ def TunnelSelector():
  
       #print(R + '[-] ' + C + 'Failed To Start Tunnel Service, Retrying...' + W + '\n')
  
-    print("https://" + (JSON.loads(TunnelURL.text)['tunnels'][0]['public_url'].split("https://")[1]) + '\n')
+    WAN = "https://" + (JSON.loads(TunnelURL.text)['tunnels'][0]['public_url'].split("https://")[1])
   else:
     print(R + '[+] ' + C + 'Invalid Tunnel Mode Selected' + W + '\n')
     exit(0)
@@ -126,6 +129,7 @@ def TemplateSelector():
 
 
 def ServerSpawner():
+  global WAN
   print('\n' + G + '[+] ' + C + 'Starting Server... ' + W, end='')
   OS.system(" kill -9 $( ps -ef | grep php |  awk '{print $2}' )")
   with open('./Logs/PHP.log','w') as PHP_LOG:
@@ -135,7 +139,9 @@ def ServerSpawner():
       PHP_Request = Req.get('http://0.0.0.0:' + Args.port + '/index.html')
       if(PHP_Request.status_code == 200):
         print(C + '[' + G + 'Server running!' + C + '] ' + W)
-        print(G + '[+] ' + W + 'http://0.0.0.0:' + Args.port + '/index.html' + '\n')
+        print(G + '[+][LAN] ' + W + 'http://localhost:' + Args.port + '/index.html' + '\n')
+        if(Tunnel_Mode == 'auto' or Tunnel_Mode == 'Auto'):
+          print(G + '[+][WAN] ' + W + WAN + '\n')
       else:
         print(C + '[' + R + 'Request failed with code:{}'.format(PHP_Request.status_code) + C + '] ' + W)
     except Req.ConnectionError as E: 

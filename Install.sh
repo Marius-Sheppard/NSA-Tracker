@@ -41,5 +41,7 @@ chmod 777 ./Output/Info.txt
 touch ./Output/Results.txt
 chmod 777 ./Output/Results.txt
 touch ./Output/Results.csv
+chmod 777 ./Output/Results.csv
+chmod 777 -R ./Output/
 echo "Captures" > ./Output/Results.csv
 echo '[NSA-TRACKER] Tracking Tool Installed.'
