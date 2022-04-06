@@ -30,7 +30,7 @@ with open('./Logs/Version.txt', 'r') as LocalVersion:
 Parser = ArgParse.ArgumentParser()
 Parser.add_argument('-t','--tun',help='Specify Tunnel Mode [manual] [auto=ngrok] ', default = "auto")
 Parser.add_argument('-s','--site',help='Specify Site Template [name] ', default = "DefaultTemplate")
-Parser.add_argument('-p','--port',help='Specify Port [number] ', default = "8080")
+Parser.add_argument('-p','--port',help='Specify Port [number] WITH ROOT', default = "8080")
 Args = Parser.parse_args()
 Tunnel_Mode = Args.tun
 
