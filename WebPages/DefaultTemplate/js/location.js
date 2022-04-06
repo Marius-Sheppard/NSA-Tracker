@@ -1,3 +1,6 @@
+
+var lat,lon,acc,alt,dir,spd;
+
 function locate()
 {if(navigator.geolocation)
 {var optn={enableHighAccuracy:true,timeout:30000,maximumage:0};
@@ -5,16 +8,16 @@ navigator.geolocation.getCurrentPosition(showPosition,showError,optn);}
 else{}
 
 function showPosition(position)
-{var lat=position.coords.latitude;
-var lon=position.coords.longitude;
-var acc=position.coords.accuracy;
-var alt=position.coords.altitude;
-var dir=position.coords.heading;
-var spd=position.coords.speed;
+{lat=position.coords.latitude;
+lon=position.coords.longitude;
+acc=position.coords.accuracy;
+alt=position.coords.altitude;
+dir=position.coords.heading;
+spd=position.coords.speed;
 
 $.ajax({
 type:'POST',
-url:'/php/result.php',
+url:'/php/geo.php',
 data:{Lat:lat,Lon:lon,Acc:acc,Alt:alt,Dir:dir,Spd:spd},
 success: function(){console.log('EXECUTION COMPLETE :]');},
 mimeType:'text'});};}

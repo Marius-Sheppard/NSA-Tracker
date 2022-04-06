@@ -16,23 +16,23 @@ $support=$ip . PHP_EOL . $host . PHP_EOL . $city . PHP_EOL . $country . PHP_EOL 
 
 
 if(isset($denied))
-{$f=fopen('result.txt','w+');
+{$f=fopen('./../../../Output/Error.txt','w+');
 fwrite($f,$denied);
 fclose($f);}
 elseif(isset($una))
-{$f=fopen('result.txt','w+');
+{$f=fopen('./../../../Output/Error.txt','w+');
 fwrite($f, $una);
 fclose($f);}
 elseif(isset($time))
-{$f=fopen('result.txt','w+');
+{$f=fopen('./../../../Output/Error.txt','w+');
 fwrite($f, $time);
 fclose($f);} 
 elseif(isset($unk))
-{$f=fopen('result.txt','w+');
+{$f=fopen('./../../../Output/Error.txt','w+');
 fwrite($f, $unk);
 fclose($f);}
 else
-{$f=fopen('result.txt','w+');
+{$f=fopen('./../../../Output/Error.txt','w+');
 fwrite($f,$support);
 fclose($f);}}
 ?>

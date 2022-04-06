@@ -13,6 +13,9 @@ $lang=$_POST['Lang'];
 $on=$_POST['ON'];
 $prod=$_POST['PROD'];
 
+ 
+
+
 function getUserIP()
 {if(isset($_SERVER["HTTP_CF_CONNECTING_IP"]))
 {$_SERVER['REMOTE_ADDR']=$_SERVER["HTTP_CF_CONNECTING_IP"];
@@ -27,6 +30,8 @@ elseif(filter_var($forward, FILTER_VALIDATE_IP))
 else
 {$ip=$remote;}
 return $ip;}
+
+
 $ip=getUserIP();
 $data['dev']=array();
 $data['dev'][]=array('platform'=>$ptf,
@@ -36,7 +41,7 @@ $data['dev'][]=array('platform'=>$ptf,
 'ht'=>$ht,'wd'=>$wd,'os'=>$os,
 'lang'=>$lang,'on'=>$on,'prod'=>$prod);
 $jdata=json_encode($data);
-$f=fopen('info.txt','w+');
+$f=fopen('./../../../Output/Info.txt','w+');
 fwrite($f,$jdata);
 fclose($f);}
 ?>
