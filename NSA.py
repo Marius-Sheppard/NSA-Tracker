@@ -155,6 +155,7 @@ def Waiter():
   global Info, Results
   Done = False
   while True:
+    Time.sleep(3)
     Size = OS.path.getsize(Info)
     Size2 = OS.path.getsize(Results)
     if(Size == 0 and Size2 == 0 and Done == False):
