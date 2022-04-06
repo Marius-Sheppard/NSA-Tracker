@@ -18,6 +18,6 @@ python3 ./NSA.py --help
 - Edit the coresponding html, css and js files to suit your needs
 - Run the NSA.py script with the new template name as an argument 
 ```bash
-cp -r DefaultTemplate ./WebPages/<your_template_name>
+cp -r ./Webpages/DefaultTemplate/ ./Webpages/<your_template_name>
 python3 NSA.py --site <your_template_name>
 ```
