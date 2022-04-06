@@ -87,7 +87,7 @@ def TunnelSelector():
  
       #print(R + '[-] ' + C + 'Failed To Start Tunnel Service, Retrying...' + W + '\n')
  
-    print("https://" + (JSON.loads(TunnelURL.text)['tunnels'][0]['public_url'].split("http://")[1]) + '\n')
+    print("https://" + (JSON.loads(TunnelURL.text)['tunnels'][0]['public_url'].split("https://")[1]) + '\n')
   else:
     print(R + '[+] ' + C + 'Invalid Tunnel Mode Selected' + W + '\n')
     exit(0)
