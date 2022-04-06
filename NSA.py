@@ -100,8 +100,8 @@ def TemplateSelector():
   Info = './Output/Info.txt'
   Results = './Output/Results.txt'
   Pages = []
-  for File in OS.listdir('./WebPages/'):
-    if(OS.path.isdir('./WebPages/' + File)):
+  for File in OS.listdir('./Webpages/'):
+    if(OS.path.isdir('./Webpages/' + File)):
       Pages.append(File)
   
   PageIndex = 0
@@ -129,7 +129,7 @@ def ServerSpawner():
   print('\n' + G + '[+] ' + C + 'Starting Server... ' + W, end='')
   OS.system(" kill -9 $( ps -ef | grep php |  awk '{print $2}' )")
   with open('./Logs/PHP.log','w') as PHP_LOG:
-    Subb.Popen(['php', '-S', '0.0.0.0:' + Args.port, '-t','./WebPages/{}/'.format(WebPage)], stdout = PHP_LOG, stderr = PHP_LOG)
+    Subb.Popen(['php', '-S', '0.0.0.0:' + Args.port, '-t','./Webpages/{}/'.format(WebPage)], stdout = PHP_LOG, stderr = PHP_LOG)
     Time.sleep(3)
     try:
       PHP_Request = Req.get('http://0.0.0.0:' + Args.port + '/index.html')
