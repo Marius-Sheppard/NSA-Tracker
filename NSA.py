@@ -29,7 +29,7 @@ with open('./Logs/Version.txt', 'r') as LocalVersion:
 
 Parser = ArgParse.ArgumentParser()
 Parser.add_argument('-t','--tun',help='Specify Tunnel Mode [manual] [auto=ngrok] ', default = "auto")
-Parser.add_argument('-s','--site',help='Specify Site Template [name] ', default = "DefaultTemplate")
+Parser.add_argument('-s','--site',help='Specify Site Template [name] ', default = None)
 Parser.add_argument('-p','--port',help='Specify Port [number] WITH ROOT', default = "8080")
 Args = Parser.parse_args()
 Tunnel_Mode = Args.tun
@@ -99,30 +99,33 @@ def TunnelSelector():
 
 def TemplateSelector():
   global Info, WebPage, Results
-  print(G + '[+] ' + C + 'Select Website:' + W + '\n')
-  Info = './Output/Info.txt'
-  Results = './Output/Results.txt'
-  Pages = []
-  for File in OS.listdir('./Webpages/'):
-    if(OS.path.isdir('./Webpages/' + File)):
-      Pages.append(File)
-  
-  PageIndex = 0
-  for Page in Pages:
-    print(G + '   [' + str(PageIndex) + '] ' + C + Page + W + '\n')
-    PageIndex+=1
+  if(Args.site != None):
+    WebPage = Args.site
+  else:
+    print(G + '[+] ' + C + 'Select Website:' + W + '\n')
+    Info = './Output/Info.txt'
+    Results = './Output/Results.txt'
+    Pages = []
+    for File in OS.listdir('./Webpages/'):
+      if(OS.path.isdir('./Webpages/' + File)):
+        Pages.append(File)
+    
+    PageIndex = 0
+    for Page in Pages:
+      print(G + '   [' + str(PageIndex) + '] ' + C + Page + W + '\n')
+      PageIndex+=1
 
-  Selected = input(G + '[>] ' + W) 
-  if(Selected.isdigit()):
-    Selected = int(Selected)
-    if(Selected >= 0 and Selected < len(Pages)):
-      WebPage = Pages[Selected]
-      print('\n' + G + '[+] ' + C + 'Loading: ' + WebPage + W)
+    Selected = input(G + '[>] ' + W) 
+    if(Selected.isdigit()):
+      Selected = int(Selected)
+      if(Selected >= 0 and Selected < len(Pages)):
+        WebPage = Pages[Selected]
+        print('\n' + G + '[+] ' + C + 'Loading: ' + WebPage + W)
+      else:
+        print(R + '[-] ' + C + 'Invalid Selection' + W + '\n')
+        TemplateSelector()
     else:
       print(R + '[-] ' + C + 'Invalid Selection' + W + '\n')
-      TemplateSelector()
-  else:
-    print(R + '[-] ' + C + 'Invalid Selection' + W + '\n')
     TemplateSelector()
 
 
