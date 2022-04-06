@@ -23,7 +23,7 @@ Info    = ''
 Results = ''
 Rows    = []
 
-with open('./Logs/version.txt', 'r') as LocalVersion:
+with open('./Logs/Version.txt', 'r') as LocalVersion:
   Version = LocalVersion.read().strip() 
 
 Parser = ArgParse.ArgumentParser()
